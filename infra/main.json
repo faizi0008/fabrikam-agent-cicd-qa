@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.48.1.52935",
-      "templateHash": "7877033342299489060"
+      "templateHash": "4355472100789593502"
     }
   },
   "parameters": {
@@ -403,6 +403,14 @@
     "DASHBOARD_ENDPOINT": {
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Resources/deployments', format('delivery-resources-{0}', variables('suffix'))), '2025-04-01').outputs.dashboardEndpoint.value]"
+    },
+    "AZURE_AI_PROJECT_ID": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', format('delivery-resources-{0}', variables('suffix'))), '2025-04-01').outputs.foundryProjectId.value]"
+    },
+    "AZURE_AI_PROJECT_ENDPOINT": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', format('delivery-resources-{0}', variables('suffix'))), '2025-04-01').outputs.foundryProjectEndpoint.value]"
     }
   }
 }

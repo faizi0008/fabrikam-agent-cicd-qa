@@ -34,3 +34,6 @@ output FOUNDRY_MODEL_NAME string = modelDeploymentName
 output FOUNDRY_MODEL_VERSION string = modelVersion
 output DASHBOARD_APP_NAME string = deliveryResources.outputs.dashboardAppName
 output DASHBOARD_ENDPOINT string = deliveryResources.outputs.dashboardEndpoint
+
+output AZURE_AI_PROJECT_ID string = deliveryResources.outputs.foundryProjectId
+output AZURE_AI_PROJECT_ENDPOINT string = deliveryResources.outputs.foundryProjectEndpoint
