@@ -32,7 +32,7 @@ def main() -> int:
             "--name", args.app,
             "--revision", revision,
         ],
-        check=True,
+        check=False,
     )
     subprocess.run(
         [
