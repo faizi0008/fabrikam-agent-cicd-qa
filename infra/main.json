@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.48.1.52935",
-      "templateHash": "4355472100789593502"
+      "templateHash": "8606378930278846127"
     }
   },
   "parameters": {
@@ -82,7 +82,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.48.1.52935",
-              "templateHash": "10904478198430428218"
+              "templateHash": "13856589728552051897"
             }
           },
           "parameters": {
@@ -326,6 +326,21 @@
               },
               "dependsOn": [
                 "[resourceId('Microsoft.ContainerRegistry/registries', variables('registryName'))]"
+              ]
+            },
+            {
+              "condition": "[not(empty(parameters('githubPrincipalId')))]",
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[resourceId('Microsoft.CognitiveServices/accounts/projects', variables('foundryName'), variables('foundryProjectName'))]",
+              "name": "[guid(resourceId('Microsoft.CognitiveServices/accounts/projects', variables('foundryName'), variables('foundryProjectName')), parameters('githubPrincipalId'), variables('foundryUserRole'))]",
+              "properties": {
+                "principalId": "[parameters('githubPrincipalId')]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[variables('foundryUserRole')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts/projects', variables('foundryName'), variables('foundryProjectName'))]"
               ]
             }
           ],

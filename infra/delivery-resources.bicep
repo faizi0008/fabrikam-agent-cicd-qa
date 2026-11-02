@@ -163,3 +163,13 @@ output foundryProjectName string = foundryProject.name
 output foundryProjectEndpoint string = 'https://${foundry.name}.services.ai.azure.com/api/projects/${foundryProject.name}'
 output dashboardAppName string = dashboard.name
 output dashboardEndpoint string = 'https://${dashboard.properties.configuration.ingress.fqdn}'
+
+resource githubFoundryRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = if (!empty(githubPrincipalId)) {
+  name: guid(foundryProject.id, githubPrincipalId, foundryUserRole)
+  scope: foundryProject
+  properties: {
+    principalId: githubPrincipalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: foundryUserRole
+  }
+}
