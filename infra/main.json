@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.48.1.52935",
-      "templateHash": "4355472100789593502"
+      "templateHash": "1086312565344287963"
     }
   },
   "parameters": {
@@ -82,7 +82,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.48.1.52935",
-              "templateHash": "10904478198430428218"
+              "templateHash": "15023051573266435997"
             }
           },
           "parameters": {
@@ -237,6 +237,12 @@
                 "managedEnvironmentId": "[resourceId('Microsoft.App/managedEnvironments', format('cae-{0}-{1}', take(parameters('environmentName'), 18), parameters('suffix')))]",
                 "configuration": {
                   "activeRevisionsMode": "Multiple",
+                  "registries": [
+                    {
+                      "server": "[reference(resourceId('Microsoft.ContainerRegistry/registries', variables('registryName')), '2023-07-01').loginServer]",
+                      "identity": "system"
+                    }
+                  ],
                   "ingress": {
                     "external": true,
                     "targetPort": 8000,
@@ -280,7 +286,8 @@
                 }
               },
               "dependsOn": [
-                "[resourceId('Microsoft.App/managedEnvironments', format('cae-{0}-{1}', take(parameters('environmentName'), 18), parameters('suffix')))]"
+                "[resourceId('Microsoft.App/managedEnvironments', format('cae-{0}-{1}', take(parameters('environmentName'), 18), parameters('suffix')))]",
+                "[resourceId('Microsoft.ContainerRegistry/registries', variables('registryName'))]"
               ]
             },
             {
