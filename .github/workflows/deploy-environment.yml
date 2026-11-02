@@ -64,6 +64,8 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       - uses: Azure/setup-azd@v2
+      - name: Install azd Foundry agents extension
+        run: azd extension install azure.ai.agents --source azd --version 1.0.0-beta.23
       - name: Enforce staging-first production promotion
         if: env.TARGET_ENVIRONMENT == 'production'
         run: |
