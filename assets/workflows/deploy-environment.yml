@@ -82,6 +82,8 @@ jobs:
           AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set AZURE_LOCATION "${{ vars.AZURE_LOCATION }}"
           AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set AZURE_RESOURCE_GROUP "${{ vars.AZURE_RESOURCE_GROUP_NAME }}"
           AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set GITHUB_PRINCIPAL_ID "${{ vars.GITHUB_PRINCIPAL_ID }}"
+      - name: Set azd subscription and location
+        run: AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set AZURE_SUBSCRIPTION_ID "${{ vars.AZURE_SUBSCRIPTION_ID }}" && AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set AZURE_LOCATION "${{ vars.AZURE_LOCATION }}"
       - name: Provision Foundry project, exact model, and dashboard boundary
         run: AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd provision --no-prompt
       - name: Deploy and verify scanner immutable version
