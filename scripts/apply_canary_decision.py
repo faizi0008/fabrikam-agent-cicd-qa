@@ -128,7 +128,7 @@ def _routing_evidence(resource_group: str, app: str) -> dict[str, Any]:
         "fqdn": fqdn,
         "labels": labels,
         "label_urls": {
-            label: f"https://{label}---{fqdn}"
+            label: f"https://{fqdn.split('.', 1)[0]}---{label}.{fqdn.split('.', 1)[1]}"
             for label in labels
         },
         "traffic": app_state.get("traffic") or [],
