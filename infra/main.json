@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.48.1.52935",
-      "templateHash": "1608062947345277628"
+      "templateHash": "7877033342299489060"
     }
   },
   "parameters": {
@@ -82,7 +82,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.48.1.52935",
-              "templateHash": "14437052706835843530"
+              "templateHash": "10904478198430428218"
             }
           },
           "parameters": {
@@ -131,10 +131,7 @@
               },
               "properties": {
                 "adminUserEnabled": false,
-                "publicNetworkAccess": "Enabled",
-                "networkRuleSet": {
-                  "defaultAction": "Allow"
-                }
+                "publicNetworkAccess": "Enabled"
               }
             },
             {
@@ -186,7 +183,8 @@
                 "description": "Foundry hosted-agent CI/CD training project."
               },
               "dependsOn": [
-                "[resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName'))]"
+                "[resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName'))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', variables('foundryName'), parameters('modelDeploymentName'))]"
               ]
             },
             {
