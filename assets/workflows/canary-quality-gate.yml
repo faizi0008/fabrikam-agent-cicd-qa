@@ -66,6 +66,8 @@ jobs:
       - uses: Azure/setup-azd@v2
       - name: Install azd Foundry agents extension
         run: azd extension install azure.ai.agents --source azd --version 1.0.0-beta.23
+      - name: Use Azure CLI credentials for azd
+        run: azd config set auth.useAzCliAuth true
       - name: Select environment
         run: AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env select "${{ vars.AZURE_ENV_NAME }}"
       - name: Promote dashboard candidate to 100 percent

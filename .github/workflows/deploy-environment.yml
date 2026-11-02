@@ -66,6 +66,8 @@ jobs:
       - uses: Azure/setup-azd@v2
       - name: Install azd Foundry agents extension
         run: azd extension install azure.ai.agents --source azd --version 1.0.0-beta.23
+      - name: Use Azure CLI credentials for azd
+        run: azd config set auth.useAzCliAuth true
       - name: Enforce staging-first production promotion
         if: env.TARGET_ENVIRONMENT == 'production'
         run: |
